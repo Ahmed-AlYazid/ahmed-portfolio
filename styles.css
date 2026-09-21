@@ -225,7 +225,6 @@ button, input, select { font: inherit; }
 .lab-source { font-size: 11px !important; }
 .lab-source a { color: var(--accent-2); text-underline-offset: 3px; }
 .lab-panel-secondary { background: radial-gradient(circle at 100% 0, color-mix(in srgb, var(--accent-2) 10%, transparent), transparent 38%), var(--panel); }
-.animal-lab { margin-top: 0; }
 .animal-class-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 20px 0; }
 .animal-class-list span { padding: 6px 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font: 750 10px ui-monospace, monospace; }
 .demo-form { display: grid; gap: 18px; min-width: 0; padding: 26px; border: 1px solid var(--line-strong); border-radius: 19px; background: var(--panel-solid); box-shadow: 0 18px 60px rgba(0,0,0,.18); }

@@ -63,11 +63,16 @@
     .map((link) => ({ link, section: document.querySelector(link.getAttribute('href')) }))
     .filter(({ section }) => section);
   let scrollFrame = 0;
+  let lastScrollY = window.scrollY;
+  let displayedProgress = 0;
 
   function updatePagePosition() {
     scrollFrame = 0;
     const scrollLimit = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    progressBar?.style.setProperty('transform', `scaleX(${Math.min(1, Math.max(0, window.scrollY / scrollLimit))})`);
+    const rawProgress = Math.min(1, Math.max(0, window.scrollY / scrollLimit));
+    displayedProgress = window.scrollY >= lastScrollY ? Math.max(displayedProgress, rawProgress) : rawProgress;
+    lastScrollY = window.scrollY;
+    progressBar?.style.setProperty('transform', `scaleX(${displayedProgress})`);
     const marker = window.scrollY + Math.min(240, window.innerHeight * .34);
     let activeLink = null;
     sectionLinks.forEach(({ link, section }) => {
