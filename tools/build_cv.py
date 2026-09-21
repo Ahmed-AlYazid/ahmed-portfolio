@@ -11,9 +11,9 @@ from reportlab.platypus import HRFlowable, KeepTogether, Paragraph, SimpleDocTem
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "assets" / "Ahmed_Al_Yazid_CV.pdf"
-INK = colors.HexColor("#12243A")
-MUTED = colors.HexColor("#4E6072")
-ACCENT = colors.HexColor("#087C73")
+INK = colors.HexColor("#111827")
+MUTED = colors.HexColor("#536174")
+ACCENT = colors.HexColor("#6843DB")
 
 
 def style(name, size, *, leading=None, color=INK, bold=False, space_after=0):
@@ -48,17 +48,26 @@ def section(title):
 
 
 def bullet(text):
-    return p(f"<font color='#087C73'>&bull;</font>&nbsp; {text}", small)
+    return p(f"<font color='#6843DB'>&bull;</font>&nbsp; {text}", small)
 
 
 story = [
     p("AHMED SAEED AL YAZID", name),
     p("Artificial Intelligence | Machine Learning | Data Science | Computer Vision", role),
-    p("Makkah, Saudi Arabia  |  ahmedalyzeed@gmail.com  |  github.com/Ahmed-AlYazid", contact),
+    p(
+        "Makkah, Saudi Arabia  |  "
+        "<link href='mailto:ahmedalyzeed@gmail.com'><font color='#536174'>ahmedalyzeed@gmail.com</font></link>  |  "
+        "<link href='https://github.com/Ahmed-AlYazid'><font color='#536174'>github.com/Ahmed-AlYazid</font></link>",
+        contact,
+    ),
+    p(
+        "Portfolio: <link href='https://ahmed-portfolio-2e0.pages.dev/'><font color='#6843DB'><u>ahmed-portfolio-2e0.pages.dev</u></font></link>",
+        contact,
+    ),
 ]
 
 story += section("Profile")
-story.append(p("Artificial Intelligence graduate from Umm Al-Qura University (GPA 3.37/4.00). Experience includes a team-based comparative computer-vision study and a deployed Arabic educational supervision platform. Works with Python, model evaluation, data analysis, and cloud deployment."))
+story.append(p("Artificial Intelligence graduate from Umm Al-Qura University (GPA 3.37/4.00) with experience in controlled computer-vision research, applied machine-learning projects, and a production Arabic educational platform. The linked portfolio includes three browser-based demonstrations built from the documented coursework data and image classes."))
 
 story += section("Education")
 story.append(p("<b>B.Sc. Artificial Intelligence</b>  |  Umm Al-Qura University, College of Computing  |  2022-2026  |  GPA 3.37/4.00", small))
@@ -68,7 +77,7 @@ story += [
     KeepTogether([
         p("Educational Supervision Platform  |  Production platform, 2026", project),
         bullet("Built and deployed Arabic RTL workflows for supervision visits, structured records, dashboards, reporting, access control, and document exports."),
-        bullet("Cloudflare Pages and Workers, Cloudflare D1, Better Auth, and Backblaze B2. Live: almarefah-supervision.pages.dev"),
+        bullet("Cloudflare Pages and Workers, Cloudflare D1, Better Auth, and Backblaze B2. <link href='https://almarefah-supervision.pages.dev/'><font color='#6843DB'><u>Live platform</u></font></link>"),
     ]),
     Spacer(1, 5),
     KeepTogether([
@@ -79,15 +88,15 @@ story += [
     ]),
     Spacer(1, 5),
     KeepTogether([
-        p("Academic machine-learning projects", project),
-        bullet("Multi-class animal image classification with a TensorFlow/Keras CNN and augmentation."),
-        bullet("Diamond price regression from length, width, and depth with scikit-learn; evaluated with MAE, RMSE, and R-squared."),
-        bullet("Obesity-risk classification with one Gaussian Naive Bayes model on selected features and a classification report."),
+        p("Interactive academic machine-learning projects", project),
+        bullet("Animal image classification across nine documented classes. The portfolio retraining used 827 readable coursework images and achieved 88.9% held-out accuracy with local browser inference."),
+        bullet("Diamond price regression from length, width, and depth. Reproduced held-out results: MAE $241, RMSE $329, and R-squared 0.904."),
+        bullet("Obesity coursework model audit and a documented decision-tree retraining on the same five inputs and 2,086 records; 89.6% accuracy on a 626-record holdout. Educational use only."),
     ]),
 ]
 
 story += section("Technical skills")
-story.append(p("<b>Languages &amp; data:</b> Python, SQL, Java, Pandas, NumPy, Matplotlib<br/><b>Machine learning:</b> PyTorch, TensorFlow/Keras, scikit-learn, CNNs, Vision Transformers, ResNet, transfer learning<br/><b>Evaluation:</b> cross-validation, AUC-ROC, calibration, bootstrap confidence intervals, explainability<br/><b>Cloud:</b> Cloudflare Pages, Workers, D1, Better Auth, Backblaze B2", small))
+story.append(p("<b>Languages &amp; data:</b> Python, SQL, Java, Pandas, NumPy, Matplotlib<br/><b>Machine learning:</b> PyTorch, TensorFlow/Keras, scikit-learn, CNNs, Vision Transformers, ResNet, transfer learning<br/><b>Evaluation:</b> cross-validation, AUC-ROC, calibration, bootstrap confidence intervals, explainability<br/><b>Cloud &amp; delivery:</b> Git/GitHub, Cloudflare Pages, Workers, D1, Better Auth, Backblaze B2", small))
 
 story += section("Certifications & languages")
 story.append(p("Introduction to Artificial Intelligence and Digital Skills in Artificial Intelligence (Edraak, 2022)  |  Arabic: native  |  English: professional working proficiency", small))
