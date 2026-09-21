@@ -52,19 +52,110 @@
   if (year) year.textContent = new Date().getFullYear();
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const revealTargets = document.querySelectorAll('.section-heading, .featured-card, .research-grid, .research-method, .project-card, .lab-panel, .skill-group, .education-card, .cert-card, .contact-card');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+  document.getElementById('backToTop')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (window.location.hash !== '#top') history.pushState(null, '', '#top');
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  const progressBar = document.getElementById('scrollProgress');
+  const sectionLinks = [...document.querySelectorAll('#primaryNav a[href^="#"]')]
+    .map((link) => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+    .filter(({ section }) => section);
+  let scrollFrame = 0;
+
+  function updatePagePosition() {
+    scrollFrame = 0;
+    const scrollLimit = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    progressBar?.style.setProperty('transform', `scaleX(${Math.min(1, Math.max(0, window.scrollY / scrollLimit))})`);
+    const marker = window.scrollY + Math.min(240, window.innerHeight * .34);
+    let activeLink = null;
+    sectionLinks.forEach(({ link, section }) => {
+      if (section.offsetTop <= marker) activeLink = link;
+      link.removeAttribute('aria-current');
+    });
+    activeLink?.setAttribute('aria-current', 'location');
+  }
+
+  function schedulePagePosition() {
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updatePagePosition);
+  }
+  window.addEventListener('scroll', schedulePagePosition, { passive: true });
+  window.addEventListener('resize', schedulePagePosition);
+  updatePagePosition();
+
+  const labsShell = document.getElementById('interactiveLabs');
+  const labTabs = [...document.querySelectorAll('[data-lab-target]')];
+  const labPanels = [...document.querySelectorAll('[data-lab-panel]')];
+
+  if (labsShell && labTabs.length && labPanels.length) {
+    labsShell.classList.add('is-enhanced');
+    document.getElementById('labTabs')?.setAttribute('role', 'tablist');
+    labTabs.forEach((tab) => {
+      tab.setAttribute('role', 'tab');
+      tab.id = `${tab.dataset.labTarget}-tab`;
+      tab.setAttribute('aria-controls', tab.dataset.labTarget);
+    });
+    labPanels.forEach((panel) => {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', `${panel.id}-tab`);
+    });
+
+    const activateLab = (targetId, { updateHash = false, scroll = false } = {}) => {
+      if (!labPanels.some((panel) => panel.id === targetId)) return;
+      labPanels.forEach((panel) => { panel.hidden = panel.id !== targetId; });
+      labTabs.forEach((tab) => {
+        const selected = tab.dataset.labTarget === targetId;
+        tab.classList.toggle('is-active', selected);
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    revealTargets.forEach((target) => {
-      target.classList.add('reveal');
-      observer.observe(target);
+      if (updateHash && window.location.hash !== `#${targetId}`) history.pushState(null, '', `#${targetId}`);
+      if (scroll) {
+        requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView({
+          behavior: reduceMotion ? 'auto' : 'smooth',
+          block: 'start'
+        }));
+      }
+      schedulePagePosition();
+    };
+
+    const requestedLab = window.location.hash.slice(1);
+    activateLab(labPanels.some((panel) => panel.id === requestedLab) ? requestedLab : labPanels[0].id);
+    if (labPanels.some((panel) => panel.id === requestedLab)) {
+      requestAnimationFrame(() => document.getElementById(requestedLab)?.scrollIntoView({ block: 'start' }));
+    }
+
+    document.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target.closest('a[href^="#"]');
+      const targetId = link?.getAttribute('href').slice(1);
+      if (!targetId || !labPanels.some((panel) => panel.id === targetId)) return;
+      event.preventDefault();
+      activateLab(targetId, { updateHash: true, scroll: true });
+    });
+
+    document.getElementById('labTabs')?.addEventListener('keydown', (event) => {
+      const currentIndex = labTabs.indexOf(document.activeElement);
+      if (currentIndex < 0) return;
+      if (event.key === ' ') {
+        event.preventDefault();
+        activateLab(labTabs[currentIndex].dataset.labTarget, { updateHash: true, scroll: true });
+        return;
+      }
+      let nextIndex = currentIndex;
+      if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % labTabs.length;
+      else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + labTabs.length) % labTabs.length;
+      else if (event.key === 'Home') nextIndex = 0;
+      else if (event.key === 'End') nextIndex = labTabs.length - 1;
+      else return;
+      event.preventDefault();
+      labTabs[nextIndex].focus();
+    });
+
+    window.addEventListener('popstate', () => {
+      const targetId = window.location.hash.slice(1);
+      if (labPanels.some((panel) => panel.id === targetId)) activateLab(targetId);
     });
   }
 
@@ -73,6 +164,7 @@
   const animalPreview = document.getElementById('animalPreview');
   const animalPreviewImage = document.getElementById('animalPreviewImage');
   const animalResult = document.getElementById('animalResult');
+  const animalButton = animalForm?.querySelector('button[type="submit"]');
   let animalSession;
   let animalHead;
   let animalRuntimePromise;
@@ -133,6 +225,9 @@
       return;
     }
     try {
+      animalForm.setAttribute('aria-busy', 'true');
+      animalButton.disabled = true;
+      animalButton.textContent = 'Loading classifier…';
       animalResult.textContent = 'Loading the image model for this session…';
       const ort = await loadAnimalRuntime();
       ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.30.0/dist/';
@@ -149,6 +244,7 @@
         });
       }
       animalResult.textContent = 'Analyzing the image locally…';
+      animalButton.textContent = 'Analyzing image…';
       const tensor = await imageToTensor(file, ort);
       const output = await animalSession.run({ input: tensor });
       const features = output.output.data;
@@ -174,11 +270,21 @@
       label.textContent = top.probability < 0.42 ? `Closest match: ${title}` : title;
       const detail = document.createElement('span');
       detail.textContent = `${Math.round(top.probability * 100)}% relative confidence among the nine classes`;
+      const meter = document.createElement('div');
+      meter.className = 'confidence-meter';
+      meter.setAttribute('aria-hidden', 'true');
+      const meterFill = document.createElement('span');
+      meterFill.style.setProperty('--confidence', `${Math.round(top.probability * 100)}%`);
+      meter.append(meterFill);
       const alternatives = document.createElement('small');
       alternatives.textContent = `Next: ${ranked[1].label} ${Math.round(ranked[1].probability * 100)}% · ${ranked[2].label} ${Math.round(ranked[2].probability * 100)}%`;
-      animalResult.append(label, detail, alternatives);
+      animalResult.append(label, detail, meter, alternatives);
     } catch (_) {
       animalResult.textContent = 'The image model could not load. Check your connection and try again.';
+    } finally {
+      animalForm.removeAttribute('aria-busy');
+      animalButton.disabled = false;
+      animalButton.textContent = 'Classify image';
     }
   });
 

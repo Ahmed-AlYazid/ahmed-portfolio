@@ -25,7 +25,7 @@ The small regression and decision-tree models run with native JavaScript. The an
 
 - `index.html` — content, SEO metadata, and the interactive lab markup
 - `styles.css` — responsive visual system, themes, effects, and motion fallbacks
-- `script.js` — navigation, themes, reveal behavior, and model inference
+- `script.js` — navigation, themes, page progress, accessible lab switching, and model inference
 - `assets/` — model artifacts, favicon, social card, and public CV
 - `tools/` — reproducible authoring scripts for the CV, social card, and coursework models
 - `404.html` — production not-found page

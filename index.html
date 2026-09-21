@@ -42,10 +42,11 @@
   }
   </script>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
-  <header class="site-header" id="top">
+  <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="AY — Ahmed Al Yazid home">
         <span class="brand-mark" aria-hidden="true">AY</span>
@@ -232,7 +233,17 @@
           </article>
         </div>
 
-        <div class="lab-panel animal-lab" id="animal-demo">
+        <div class="labs-shell" id="interactiveLabs">
+          <nav class="lab-switcher" aria-label="Choose an interactive AI demonstration">
+            <span class="lab-switcher-label">Run a project</span>
+            <div class="lab-tabs" id="labTabs">
+              <a class="lab-tab" href="#animal-demo" data-lab-target="animal-demo"><span>01</span>Animal vision</a>
+              <a class="lab-tab" href="#diamond-demo" data-lab-target="diamond-demo"><span>02</span>Diamond price</a>
+              <a class="lab-tab" href="#obesity-demo" data-lab-target="obesity-demo"><span>03</span>Weight status</a>
+            </div>
+          </nav>
+
+        <div class="lab-panel animal-lab" id="animal-demo" data-lab-panel aria-label="Animal image classifier demonstration">
           <div class="lab-copy">
             <div class="kicker">Interactive lab · Original project images</div>
             <h3>Which of the nine animals is in the image?</h3>
@@ -257,7 +268,7 @@
           </form>
         </div>
 
-        <div class="lab-panel" id="diamond-demo">
+        <div class="lab-panel" id="diamond-demo" data-lab-panel aria-label="Diamond price regression demonstration">
           <div class="lab-copy">
             <div class="kicker">Interactive lab</div>
             <h3>Put the diamond model to work.</h3>
@@ -277,7 +288,7 @@
           </form>
         </div>
 
-        <div class="lab-panel lab-panel-secondary" id="obesity-demo">
+        <div class="lab-panel lab-panel-secondary" id="obesity-demo" data-lab-panel aria-label="Weight-status classification demonstration">
           <div class="lab-copy">
             <div class="kicker">Interactive lab · Coursework data</div>
             <h3>Explore the classification workflow.</h3>
@@ -297,6 +308,7 @@
             <div class="demo-result" id="obesityResult" role="status" aria-live="polite">Use the sample values or enter your own data.</div>
             <p class="form-privacy">Processed in your browser. No inputs are sent or saved.</p>
           </form>
+        </div>
         </div>
       </div>
     </section>
@@ -366,7 +378,7 @@
   <footer class="site-footer">
     <div class="container footer-row">
       <p>© <span id="year"></span> Ahmed Saeed Al Yazid.</p>
-      <a href="#top">Back to top ↑</a>
+      <a id="backToTop" href="#top">Back to top ↑</a>
     </div>
   </footer>
 
