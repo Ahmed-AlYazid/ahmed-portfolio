@@ -132,7 +132,8 @@
       const targetId = link?.getAttribute('href').slice(1);
       if (!targetId || !labPanels.some((panel) => panel.id === targetId)) return;
       event.preventDefault();
-      activateLab(targetId, { updateHash: true, scroll: true });
+      const openedFromProjectCard = !link.hasAttribute('data-lab-target');
+      activateLab(targetId, { updateHash: true, scroll: openedFromProjectCard });
     });
 
     document.getElementById('labTabs')?.addEventListener('keydown', (event) => {
@@ -140,7 +141,7 @@
       if (currentIndex < 0) return;
       if (event.key === ' ') {
         event.preventDefault();
-        activateLab(labTabs[currentIndex].dataset.labTarget, { updateHash: true, scroll: true });
+        activateLab(labTabs[currentIndex].dataset.labTarget, { updateHash: true });
         return;
       }
       let nextIndex = currentIndex;
