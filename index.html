@@ -267,9 +267,9 @@
           <form class="demo-form" id="diamondForm">
             <div class="form-heading"><span>02 / ORIGINAL PROJECT MODEL</span><strong>Diamond price estimate</strong></div>
             <div class="form-grid">
-              <label for="diamondX">Length <span>millimeters</span><input id="diamondX" name="x" type="number" inputmode="decimal" min="3.79" max="6.9" step="0.01" value="3.95" required /></label>
-              <label for="diamondY">Width <span>millimeters</span><input id="diamondY" name="y" type="number" inputmode="decimal" min="3.75" max="6.9" step="0.01" value="3.98" required /></label>
-              <label for="diamondZ">Depth <span>millimeters</span><input id="diamondZ" name="z" type="number" inputmode="decimal" min="2.27" max="4.33" step="0.01" value="2.43" required /></label>
+              <label for="diamondX">Length <span>millimeters</span><input id="diamondX" name="x" type="text" inputmode="decimal" lang="en-US" dir="ltr" data-western-number data-min="3.79" data-max="6.9" pattern="[0-9]+([.][0-9]+)?" value="3.95" autocomplete="off" spellcheck="false" required /></label>
+              <label for="diamondY">Width <span>millimeters</span><input id="diamondY" name="y" type="text" inputmode="decimal" lang="en-US" dir="ltr" data-western-number data-min="3.75" data-max="6.9" pattern="[0-9]+([.][0-9]+)?" value="3.98" autocomplete="off" spellcheck="false" required /></label>
+              <label for="diamondZ">Depth <span>millimeters</span><input id="diamondZ" name="z" type="text" inputmode="decimal" lang="en-US" dir="ltr" data-western-number data-min="2.27" data-max="4.33" pattern="[0-9]+([.][0-9]+)?" value="2.43" autocomplete="off" spellcheck="false" required /></label>
             </div>
             <button class="button" type="submit">Estimate price</button>
             <div class="demo-result" id="diamondResult" role="status" aria-live="polite">Use the sample values or enter your own dimensions.</div>
@@ -287,8 +287,8 @@
           <form class="demo-form" id="obesityForm">
             <div class="form-heading"><span>03 / PROJECT DATA RETRAINING</span><strong>Weight-status classifier</strong></div>
             <div class="form-grid obesity-fields">
-              <label for="obesityHeight">Height <span>centimeters</span><input id="obesityHeight" name="height" type="number" inputmode="decimal" min="145" max="198" step="0.1" value="170" required /></label>
-              <label for="obesityWeight">Weight <span>kilograms</span><input id="obesityWeight" name="weight" type="number" inputmode="decimal" min="39" max="165.1" step="0.1" value="75" required /></label>
+              <label for="obesityHeight">Height <span>centimeters</span><input id="obesityHeight" name="height" type="text" inputmode="decimal" lang="en-US" dir="ltr" data-western-number data-min="145" data-max="198" pattern="[0-9]+([.][0-9]+)?" value="170" autocomplete="off" spellcheck="false" required /></label>
+              <label for="obesityWeight">Weight <span>kilograms</span><input id="obesityWeight" name="weight" type="text" inputmode="decimal" lang="en-US" dir="ltr" data-western-number data-min="39" data-max="165.1" pattern="[0-9]+([.][0-9]+)?" value="75" autocomplete="off" spellcheck="false" required /></label>
               <label for="familyHistory">Family history of overweight <select id="familyHistory" name="family" required><option value="1">Yes</option><option value="0">No</option></select></label>
               <label for="calorieMonitoring">Monitors calorie intake <select id="calorieMonitoring" name="scc" required><option value="0">No</option><option value="1">Yes</option></select></label>
               <label for="walkingTransport">Walking as transportation <select id="walkingTransport" name="walking" required><option value="0">No</option><option value="1">Yes</option></select></label>

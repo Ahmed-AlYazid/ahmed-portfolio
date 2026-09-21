@@ -184,11 +184,23 @@
 
   const diamondForm = document.getElementById('diamondForm');
   const diamondResult = document.getElementById('diamondResult');
+  const readBoundedNumber = (field) => {
+    const value = Number(field.value);
+    const min = Number(field.dataset.min);
+    const max = Number(field.dataset.max);
+    const valid = Number.isFinite(value) && value >= min && value <= max;
+    field.setCustomValidity(valid ? '' : `Enter a number from ${min} to ${max} using 0–9.`);
+    return value;
+  };
+  document.querySelectorAll('[data-western-number]').forEach((field) => {
+    field.addEventListener('input', () => field.setCustomValidity(''));
+  });
   let diamondModel;
   diamondForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const values = ['x', 'y', 'z'].map((key) => Number(diamondForm.elements[key].value));
-    if (values.some((value) => !Number.isFinite(value))) return;
+    const fields = ['x', 'y', 'z'].map((key) => diamondForm.elements[key]);
+    const values = fields.map(readBoundedNumber);
+    if (!diamondForm.reportValidity()) return;
     try {
       if (!diamondModel) {
         diamondResult.textContent = 'Loading the project model…';
@@ -218,9 +230,12 @@
   let obesityModel;
   obesityForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
+    const height = readBoundedNumber(obesityForm.elements.height);
+    const weight = readBoundedNumber(obesityForm.elements.weight);
+    if (!obesityForm.reportValidity()) return;
     const values = [
-      Number(obesityForm.elements.height.value) / 100,
-      Number(obesityForm.elements.weight.value),
+      height / 100,
+      weight,
       Number(obesityForm.elements.family.value),
       Number(obesityForm.elements.scc.value),
       Number(obesityForm.elements.walking.value)

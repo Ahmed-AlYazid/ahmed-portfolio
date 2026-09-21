@@ -221,6 +221,7 @@ button, input, select { font: inherit; }
 .form-grid label { min-width: 0; display: grid; align-content: start; gap: 6px; color: var(--text); font-size: 11px; font-weight: 800; }
 .form-grid label span { color: var(--muted); font-size: 9px; font-weight: 500; }
 .form-grid input, .form-grid select { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); color: var(--text); font-size: 13px; }
+.form-grid [data-western-number] { direction: ltr; unicode-bidi: isolate; font-family: Inter, "Segoe UI", Arial, sans-serif; font-variant-numeric: tabular-nums; }
 .demo-form .button { width: 100%; cursor: pointer; }
 .demo-result { min-height: 70px; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .demo-result strong { color: var(--accent-2); font-size: clamp(25px, 3vw, 34px); line-height: 1.1; letter-spacing: -.03em; }
