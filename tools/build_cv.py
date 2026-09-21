@@ -56,18 +56,19 @@ story = [
     p("Artificial Intelligence | Machine Learning | Data Science | Computer Vision", role),
     p(
         "Makkah, Saudi Arabia  |  "
-        "<link href='mailto:ahmedalyzeed@gmail.com'><font color='#536174'>ahmedalyzeed@gmail.com</font></link>  |  "
-        "<link href='https://github.com/Ahmed-AlYazid'><font color='#536174'>github.com/Ahmed-AlYazid</font></link>",
+        "<link href='tel:+966558489990'><font color='#536174'>055 848 9990</font></link>  |  "
+        "<link href='mailto:ahmedalyzeed@gmail.com'><font color='#536174'>ahmedalyzeed@gmail.com</font></link>",
         contact,
     ),
     p(
+        "GitHub: <link href='https://github.com/Ahmed-AlYazid'><font color='#536174'>github.com/Ahmed-AlYazid</font></link>  |  "
         "Portfolio: <link href='https://ahmed-portfolio-2e0.pages.dev/'><font color='#6843DB'><u>ahmed-portfolio-2e0.pages.dev</u></font></link>",
         contact,
     ),
 ]
 
 story += section("Profile")
-story.append(p("Artificial Intelligence graduate from Umm Al-Qura University (GPA 3.37/4.00) with experience in controlled computer-vision research, applied machine-learning projects, and a production Arabic educational platform. The linked portfolio includes three browser-based demonstrations built from the documented coursework data and image classes."))
+story.append(p("Artificial Intelligence graduate from Umm Al-Qura University (GPA 3.37/4.00) with experience in team-based controlled computer-vision research, applied machine-learning projects, and a production Arabic educational platform. The linked portfolio includes three browser-based demonstrations built from the documented coursework data and image classes."))
 
 story += section("Education")
 story.append(p("<b>B.Sc. Artificial Intelligence</b>  |  Umm Al-Qura University, College of Computing  |  2022-2026  |  GPA 3.37/4.00", small))
