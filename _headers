@@ -6,3 +6,7 @@
 
 /assets/*
   Cache-Control: public, max-age=604800
+
+/assets/Ahmed_Al_Yazid_CV.pdf
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Disposition: attachment; filename="Ahmed_Al_Yazid_CV.pdf"
