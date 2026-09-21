@@ -77,7 +77,7 @@ story += [
     KeepTogether([
         p("Educational Supervision Platform  |  Production platform, 2026", project),
         bullet("Built and deployed Arabic RTL workflows for supervision visits, structured records, dashboards, reporting, access control, and document exports."),
-        bullet("Cloudflare Pages and Workers, Cloudflare D1, Better Auth, and Backblaze B2. <link href='https://almarefah-supervision.pages.dev/'><font color='#6843DB'><u>Live platform</u></font></link>"),
+        bullet("Cloudflare Pages and Workers, Cloudflare D1, Better Auth, and Backblaze B2. <link href='https://almarefah-supervision.pages.dev/'><font color='#6843DB'><u>almarefah-supervision.pages.dev</u></font></link>"),
     ]),
     Spacer(1, 5),
     KeepTogether([
