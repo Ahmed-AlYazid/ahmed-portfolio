@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://ahmed-portfolio-2e0.pages.dev/sitemap.xml

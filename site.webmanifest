@@ -3,8 +3,8 @@
   "short_name": "Ahmed Al Yazid",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#07101d",
-  "theme_color": "#08111f",
+  "background_color": "#07070b",
+  "theme_color": "#07070b",
   "icons": [
     { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
