@@ -302,29 +302,20 @@
   let diamond = null, tree = null;
   fetch('assets/diamond-model.json').then((r) => r.json()).then((m) => { diamond = m; runDiamond(); }).catch(() => {});
   fetch('assets/obesity-model.json').then((r) => r.json()).then((m) => { tree = m; runObesity(); }).catch(() => {});
-  // Real diamonds keep width ≈ 1.008 × length and depth ≈ 0.615 × length; moving one
-  // dimension alone produces shapes the 500-row dataset never saw, so they move together by default.
-  const RATIO = { dx: 1, dy: 1.008, dz: 0.615 };
-  const dLink = $('#dLink');
-  dLink.addEventListener('click', () => dLink.setAttribute('aria-pressed', String(dLink.getAttribute('aria-pressed') !== 'true')));
-  ['dx', 'dy', 'dz'].forEach((id) => $('#' + id).addEventListener('input', () => {
-    if (dLink.getAttribute('aria-pressed') === 'true') {
-      const base = Number($('#' + id).value) / RATIO[id];
-      ['dx', 'dy', 'dz'].filter((k) => k !== id).forEach((k) => {
-        const el = $('#' + k);
-        el.value = Math.min(Number(el.max), Math.max(Number(el.min), base * RATIO[k])).toFixed(2);
-      });
-    }
-    runDiamond();
-  }));
+  ['dx', 'dy', 'dz'].forEach((id) => $('#' + id).addEventListener('input', runDiamond));
   function runDiamond() {
     const v = ['dx', 'dy', 'dz'].map((id) => Number($('#' + id).value));
     ['dx', 'dy', 'dz'].forEach((id, i) => { $('#' + id + 'v').textContent = v[i].toFixed(2); });
     if (!diamond) return;
     const est = diamond.intercept + v.reduce((s, x, i) => s + x * diamond.coefficients[i], 0);
     const [lo, hi] = diamond.observed_price_range;
-    $('#dPrice').textContent = est > 0 ? '$' + Math.round(est).toLocaleString('en-US') : 'Out of range';
-    $('#dNote').textContent = est >= lo && est <= hi ? 'Estimated price from the coursework regression' : 'Outside the prices seen in the project data ($326–$2,830)';
+    // Real diamonds keep width ≈ length and depth ≈ 61.5% of length; the 500-row data has no other shapes.
+    const [x, y, z] = v, odd = Math.abs(y / x - 1) > 0.06 || z / x < 0.55 || z / x > 0.68;
+    $('#dPrice').textContent = est > 0 ? '$' + Math.round(est).toLocaleString('en-US') : '—';
+    $('#dNote').textContent = est <= 0 ? 'No estimate: this shape is outside anything in the project data'
+      : odd ? 'Unusual proportions for a real diamond (width ≈ length, depth ≈ 61% of length), so treat this estimate loosely'
+      : est >= lo && est <= hi ? 'Estimated price from the coursework regression'
+      : 'Outside the prices seen in the project data ($326–$2,830)';
   }
   const flags = { fam: 1, scc: 0, walk: 0 };
   $$('.toggle[data-flag]').forEach((b) => b.addEventListener('click', () => { flags[b.dataset.flag] = flags[b.dataset.flag] ? 0 : 1; b.setAttribute('aria-pressed', String(!!flags[b.dataset.flag])); runObesity(); }));
