@@ -245,6 +245,11 @@
     $('#drawerKind').textContent = `0${i + 1} / 05 · ${WORK[i].kind}`;
     $('#drawerTitle').textContent = WORK[i].title;
     $('#drawerBody').replaceChildren(...detailFor(i, true));
+    // No wrap-around: the first project has no Previous, the last has no Next.
+    [['#drawerPrev', i - 1], ['#drawerNext', i + 1]].forEach(([sel, j]) => {
+      const b = $(sel); b.hidden = j < 0 || j >= WORK.length;
+      if (!b.hidden) $('span', b).textContent = WORK[j].title;
+    });
     renderFlow(); renderMatrix(); runDiamond(); runObesity();
     drawer.hidden = false; shade.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -259,8 +264,8 @@
   }
   $('#drawerClose').addEventListener('click', closeDrawer);
   shade.addEventListener('click', closeDrawer);
-  $('#drawerPrev').addEventListener('click', () => openDrawer((drawerIdx + 4) % 5));
-  $('#drawerNext').addEventListener('click', () => openDrawer((drawerIdx + 1) % 5));
+  $('#drawerPrev').addEventListener('click', () => { if (drawerIdx > 0) openDrawer(drawerIdx - 1); });
+  $('#drawerNext').addEventListener('click', () => { if (drawerIdx < WORK.length - 1) openDrawer(drawerIdx + 1); });
   drawer.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeDrawer();
     if (e.key === 'Tab') {
