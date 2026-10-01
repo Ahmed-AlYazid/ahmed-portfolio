@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ahmed Saeed AlYazid - CV</title>
+  <meta name="author" content="Ahmed Saeed AlYazid" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Geist:wght@400..600&family=Geist+Mono:wght@400..500&display=block" />
+  <style>
+    /* Same identity as the portfolio ("Signal"): print-safe light palette. */
+    :root {
+      --ink: #111215;
+      --muted: #4c5159;
+      --faint: #6b7078;
+      --line: #dcdbd5;
+      --accent: #c2410c;
+      --accent-soft: #fbeee7;
+      --display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+      --body: "Geist", "Segoe UI", sans-serif;
+      --mono: "Geist Mono", Consolas, monospace;
+    }
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { color: var(--ink); font: 400 8.8pt/1.38 var(--body); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: none; }
+    .page { width: 210mm; min-height: 297mm; padding: 11mm 15mm 13mm; position: relative; }
+    .page::before { content: ""; position: absolute; inset: 0 0 auto; height: 3.2mm; background: var(--accent); }
+
+    header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4mm; align-items: end; padding-bottom: 4.2mm; border-bottom: 1.2pt solid var(--ink); }
+    h1 { margin: 0; font: 800 26pt/0.95 var(--display); letter-spacing: -.02em; word-spacing: .06em; }
+    h1 span { color: var(--accent); }
+    .role { margin-top: 2.6mm; font: 500 7.1pt/1.3 var(--mono); letter-spacing: 0; white-space: nowrap; }
+    .role i { font-style: normal; color: var(--accent); padding: 0 .8mm; }
+    .contact { display: grid; gap: .8mm; white-space: nowrap; text-align: right; font-size: 8.1pt; color: var(--muted); }
+    .contact b { font: 500 6.6pt/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin-right: 1.6mm; }
+    .contact a { color: var(--ink); }
+    .contact .portfolio a { color: var(--accent); font-weight: 600; }
+
+    section { display: grid; grid-template-columns: 31mm 1fr; gap: 5mm; padding: 3.4mm 0; border-bottom: .6pt solid var(--line); }
+    section:last-of-type { border-bottom: 0; }
+    h2 { margin: 0; padding-top: .6mm; font: 500 7pt/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
+    h2 small { display: block; color: var(--faint); font-size: 6.4pt; margin-top: .6mm; }
+    p { margin: 0; }
+    .lead { color: var(--ink); }
+
+    .entry + .entry { margin-top: 2.8mm; }
+    .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+    h3 { margin: 0; font: 700 10.6pt/1.2 var(--display); letter-spacing: -.015em; }
+    .when { flex: none; font: 500 7.2pt/1 var(--mono); color: var(--faint); }
+    .sub { margin-top: .6mm; color: var(--muted); font-size: 8.4pt; }
+    .sub a { color: var(--accent); }
+    ul { margin: 1.6mm 0 0; padding: 0; list-style: none; }
+    li { position: relative; padding-left: 4mm; margin-top: .7mm; }
+    li::before { content: ""; position: absolute; left: .3mm; top: 1.75mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--accent); }
+    .metrics { display: inline; font-family: var(--mono); font-size: 8pt; font-weight: 500; }
+    .stat { display: inline-block; padding: .2mm 1.4mm; border-radius: 1mm; background: var(--accent-soft); color: var(--accent); font: 600 8pt/1.4 var(--mono); }
+
+    .skills { display: grid; grid-template-columns: 30mm 1fr; gap: 1.3mm 4mm; }
+    .skills dt { font-weight: 600; }
+    .skills dd { margin: 0; color: var(--muted); }
+
+    .two { display: grid; grid-template-columns: 1.45fr 1fr; gap: 5mm; white-space: nowrap; }
+    .meta { color: var(--faint); font: 500 7.2pt/1.4 var(--mono); }
+
+    footer { position: absolute; left: 15mm; right: 15mm; bottom: 8mm; display: flex; justify-content: space-between; font: 500 6.6pt/1 var(--mono); letter-spacing: .05em; color: var(--faint); text-transform: uppercase; }
+    footer span:last-child { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Ahmed Saeed AlYazid<span>.</span></h1>
+        <p class="role">Artificial Intelligence<i>/</i>Machine Learning<i>/</i>Data Science<i>/</i>Computer Vision</p>
+      </div>
+      <div class="contact">
+        <span><b>Base</b>Makkah, Saudi Arabia</span>
+        <span><b>Phone</b><a href="tel:+966558489990">055 848 9990</a></span>
+        <span><b>Email</b><a href="mailto:ahmedalyzeed@gmail.com">ahmedalyzeed@gmail.com</a></span>
+        <span><b>GitHub</b><a href="https://github.com/Ahmed-AlYazid">github.com/Ahmed-AlYazid</a></span>
+        <span class="portfolio"><b>Portfolio</b><a href="https://ahmed-portfolio-2e0.pages.dev/">ahmed-portfolio-2e0.pages.dev</a></span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p class="lead">Artificial Intelligence graduate from Umm Al-Qura University (GPA 3.37/4.00) with experience in team-based controlled computer-vision research, applied machine-learning projects, and a production Arabic educational platform. The linked portfolio includes three browser-based demonstrations built from the documented coursework data and image classes.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-head"><h3>B.Sc. Artificial Intelligence</h3><span class="when">2022 – 2026</span></div>
+        <p class="sub">Umm Al-Qura University, College of Computing · Makkah · GPA 3.37 / 4.00</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected work</h2>
+      <div>
+        <div class="entry">
+          <div class="entry-head"><h3>Educational Supervision Platform</h3><span class="when">Production · 2026</span></div>
+          <p class="sub">Live Arabic platform · <a href="https://almarefah-supervision.pages.dev/">almarefah-supervision.pages.dev</a></p>
+          <ul>
+            <li>Built and deployed Arabic RTL workflows for supervision visits, structured records, dashboards, reporting, access control, and document exports.</li>
+            <li>Exports official records to PDF, Word, and Excel while preserving Arabic RTL document requirements.</li>
+            <li>Cloudflare Pages and Workers, Cloudflare D1, Better Auth, and Backblaze B2.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3>Comparative Deep-Learning Research for Glaucoma Classification</h3><span class="when">Team graduation project · 2025 – 2026</span></div>
+          <ul>
+            <li>Controlled comparison of six conditions on 4,828 synthetic retinal fundus images with stratified 3-fold cross-validation.</li>
+            <li>ViT-Small and ResNet-18 feature extraction and fine-tuning; KAN-Transformer and MLP-Transformer trained from scratch. Best reported ResNet18-FT: <span class="stat">accuracy 0.963</span> <span class="stat">AUC-ROC 0.996</span></li>
+            <li>Python and PyTorch; calibration, bootstrap confidence intervals, peripheral-occlusion diagnostics, and Attention Rollout.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3>Interactive academic machine-learning projects</h3><span class="when">Coursework · runnable in the portfolio</span></div>
+          <ul>
+            <li><b>Animal image classification</b> across nine documented classes. The portfolio retraining used 827 readable coursework images and achieved 88.9% held-out accuracy with local browser inference.</li>
+            <li><b>Diamond price regression</b> from length, width, and depth. Reproduced held-out results: MAE $241, RMSE $329, and R² 0.904.</li>
+            <li><b>Obesity coursework model audit</b> and a documented decision-tree retraining on the same five inputs and 2,086 records; 89.6% accuracy on a 626-record holdout. Educational use only.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical skills</h2>
+      <dl class="skills">
+        <dt>Languages &amp; data</dt><dd>Python, SQL, Java, Pandas, NumPy, Matplotlib</dd>
+        <dt>Machine learning</dt><dd>PyTorch, TensorFlow/Keras, scikit-learn, CNNs, Vision Transformers, ResNet, transfer learning</dd>
+        <dt>Evaluation</dt><dd>Cross-validation, AUC-ROC, calibration, bootstrap confidence intervals, explainability</dd>
+        <dt>Cloud &amp; delivery</dt><dd>Git/GitHub, Cloudflare Pages, Workers, D1, Better Auth, Backblaze B2</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Certifications<small>&amp; languages</small></h2>
+      <div class="two">
+        <div>
+          <p><b>Introduction to Artificial Intelligence</b> <span class="meta">Edraak · 2022</span></p>
+          <p style="margin-top:1mm"><b>Digital Skills in Artificial Intelligence</b> <span class="meta">Edraak · 2022</span></p>
+        </div>
+        <div>
+          <p><b>Arabic</b> — native</p>
+          <p style="margin-top:1mm"><b>English</b> — professional working proficiency</p>
+        </div>
+      </div>
+    </section>
+
+    <footer><span>Ahmed Saeed AlYazid · Curriculum Vitae</span><span>ahmed-portfolio-2e0.pages.dev</span></footer>
+  </div>
+</body>
+</html>

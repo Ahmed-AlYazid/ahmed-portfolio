@@ -44,7 +44,7 @@
       menuToggle?.focus();
     }
   });
-  window.matchMedia('(min-width: 981px)').addEventListener('change', (event) => {
+  window.matchMedia('(min-width: 1081px)').addEventListener('change', (event) => {
     if (event.matches) closeMenu();
   });
 
@@ -85,9 +85,79 @@
   function schedulePagePosition() {
     if (!scrollFrame) scrollFrame = requestAnimationFrame(updatePagePosition);
   }
+  const header = document.querySelector('.site-header');
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
   window.addEventListener('scroll', schedulePagePosition, { passive: true });
   window.addEventListener('resize', schedulePagePosition);
   updatePagePosition();
+
+  // Reveal on scroll (pattern adapted from Motion Primitives "In View").
+  const revealItems = [...document.querySelectorAll('.reveal')];
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+  }
+
+  // Number ticker for metrics (pattern adapted from Magic UI "Number Ticker").
+  // The final value is always in the HTML; motion only replays it when visible.
+  const tickers = [...document.querySelectorAll('.metric-value, .model-card-metrics strong, .project-score strong')];
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const runTicker = (element) => {
+      const finalText = element.textContent.trim();
+      const match = finalText.match(/^([\d,]*\.?\d+)(.*)$/);
+      if (!match) return;
+      const raw = match[1];
+      const suffix = match[2];
+      const target = Number(raw.replace(/,/g, ''));
+      const decimals = raw.includes('.') ? raw.split('.')[1].length : 0;
+      const format = (value) => value.toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+        useGrouping: raw.includes(',')
+      }) + suffix;
+      const start = performance.now();
+      const duration = 1300;
+      element.setAttribute('aria-label', finalText);
+      const step = (now) => {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        element.textContent = progress < 1 ? format(target * eased) : finalText;
+        if (progress < 1) requestAnimationFrame(step);
+        else element.removeAttribute('aria-label');
+      };
+      requestAnimationFrame(step);
+    };
+    const tickerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        tickerObserver.unobserve(entry.target);
+        runTicker(entry.target);
+      });
+    }, { threshold: .6 });
+    tickers.forEach((ticker) => tickerObserver.observe(ticker));
+  }
+
+  // Pointer spotlight on cards (pattern adapted from Magic UI "Magic Card").
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.project-card, .skill-group, .research-story, .conditions, .credential, .metric, .feature-main').forEach((card) => {
+      card.classList.add('spotlight');
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+      });
+    });
+  }
 
   const labsShell = document.getElementById('interactiveLabs');
   const labTabs = [...document.querySelectorAll('[data-lab-target]')];

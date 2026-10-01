@@ -16,3 +16,9 @@ The animal demo loads ONNX Runtime Web 1.30.0 on demand from jsDelivr.
 
 - Project: https://github.com/microsoft/onnxruntime
 - License: MIT — https://github.com/microsoft/onnxruntime/blob/main/LICENSE
+
+## Fonts
+
+Bricolage Grotesque, Geist and Geist Mono are loaded from Google Fonts.
+
+- License: SIL Open Font License 1.1 — https://openfontlicense.org

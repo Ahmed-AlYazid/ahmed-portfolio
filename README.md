@@ -1,6 +1,6 @@
-# Ahmed Saeed Al Yazid — AI Portfolio
+# Ahmed Saeed AlYazid — AI Portfolio
 
-A lightweight, production portfolio for Ahmed Saeed Al Yazid, an Artificial Intelligence graduate working across machine learning, data science, and computer vision.
+A lightweight, production portfolio for Ahmed Saeed AlYazid, an Artificial Intelligence graduate working across machine learning, data science, and computer vision.
 
 **Live site:** https://ahmed-portfolio-2e0.pages.dev/
 
@@ -12,8 +12,14 @@ A lightweight, production portfolio for Ahmed Saeed Al Yazid, an Artificial Inte
   - Nine-class animal image classification
   - Diamond price regression
   - Obesity-dataset class prediction
-- A downloadable, public-safe CV
+- A downloadable, public-safe CV that shares the site's visual identity
 - Responsive dark/light themes and reduced-motion support
+
+## Visual identity
+
+"Signal": a graphite ground with one signal-orange accent (`#ff6a3d` dark / `#c2410c` light), Bricolage Grotesque for display type, Geist for body copy and Geist Mono for data labels. The name itself is the mark — "AlYazid." with the orange dot — and the favicon is that dot. The CV and social card use the same tokens.
+
+Motion patterns are vanilla adaptations of curated references (no dependencies): pointer spotlight and number ticker (Magic UI), in-view reveal (Motion Primitives) and a border beam on the profile card. All of them switch off under `prefers-reduced-motion`.
 
 ## Technology
 
@@ -27,7 +33,7 @@ The small regression and decision-tree models run with native JavaScript. The an
 - `styles.css` — responsive visual system, themes, effects, and motion fallbacks
 - `script.js` — navigation, themes, page progress, accessible lab switching, and model inference
 - `assets/` — model artifacts, favicon, social card, and public CV
-- `tools/` — reproducible authoring scripts for the CV, social card, and coursework models
+- `tools/` — `cv.html` and `og.html` (sources of the CV and social card), `build_assets.mjs` (renders them), and the coursework model scripts
 - `404.html` — production not-found page
 - `_headers` — Cloudflare Pages response headers
 - `CONTENT_VERIFICATION.md` — sourcing and claim notes
@@ -42,6 +48,14 @@ python -m http.server 8000
 ```
 
 Open `http://localhost:8000/`. A local HTTP server is required because the model JSON files are fetched by the page.
+
+## Rebuilding the CV and social card
+
+```bash
+node tools/build_assets.mjs
+```
+
+This renders `tools/cv.html` to `assets/Ahmed_AlYazid_CV.pdf` and `tools/og.html` to `assets/og-card.png` with a local headless Chrome or Edge (set `BROWSER` to its path if needed). The old `Ahmed_Al_Yazid_CV.pdf` URL redirects to the new file through `_redirects`.
 
 ## Model artifacts
 

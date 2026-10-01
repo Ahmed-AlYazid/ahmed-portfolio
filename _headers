@@ -7,5 +7,5 @@
 /assets/*
   Cache-Control: public, max-age=0, must-revalidate
 
-/assets/Ahmed_Al_Yazid_CV.pdf
-  Content-Disposition: attachment; filename="Ahmed_Al_Yazid_CV.pdf"
+/assets/Ahmed_AlYazid_CV.pdf
+  Content-Disposition: attachment; filename="Ahmed_AlYazid_CV.pdf"

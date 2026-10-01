@@ -1,10 +1,10 @@
 {
-  "name": "Ahmed Saeed Al Yazid — Portfolio",
-  "short_name": "Ahmed Al Yazid",
+  "name": "Ahmed Saeed AlYazid — Portfolio",
+  "short_name": "Ahmed AlYazid",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#07070b",
-  "theme_color": "#07070b",
+  "background_color": "#0b0c0e",
+  "theme_color": "#0b0c0e",
   "icons": [
     { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
