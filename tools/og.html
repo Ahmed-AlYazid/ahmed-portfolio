@@ -21,7 +21,10 @@
     h1 { margin: auto 0 0; font: 900 104px/.9 "Unbounded", sans-serif; letter-spacing: -.055em; text-transform: uppercase; }
     h1 span { display: block; }
     h1 .last { color: #5b8cff; }
-    .role { margin: 26px 0 52px; font: 400 30px/1.2 "Readex Pro", sans-serif; color: #cfd4de; }
+    .meta { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 26px 0 50px; }
+    .role { margin: 0; font: 400 27px/1.2 "Readex Pro", sans-serif; color: #cfd4de; }
+    .open { display: inline-flex; align-items: center; gap: 12px; flex: none; padding: 12px 18px; border-radius: 14px; border: 1.5px solid rgba(94, 234, 212, .45); font: 500 18px/1 "Readex Pro", sans-serif; color: #eef1f6; }
+    .open .dia { background: #5eead4; }
     .band { display: flex; gap: 34px; align-items: center; margin: 0 -80px; padding: 0 80px; height: 58px; background: #5b8cff; color: #050b1f; font: 800 26px/1 "Unbounded", sans-serif; letter-spacing: -.02em; text-transform: uppercase; white-space: nowrap; }
     .band i { width: 11px; height: 11px; flex: none; background: #050b1f; opacity: .45; transform: rotate(45deg); }
   </style>
@@ -29,7 +32,7 @@
 <body>
   <div class="top"><span><i class="dia"></i>Portfolio</span><span>Makkah, Saudi Arabia</span></div>
   <h1><span>Ahmed Saeed</span><span class="last">AlYazid</span></h1>
-  <p class="role">Artificial Intelligence graduate</p>
+  <div class="meta"><p class="role">B.Sc. Artificial Intelligence · Umm Al-Qura University</p><span class="open"><i class="dia"></i>Open to AI, ML &amp; data roles</span></div>
   <div class="band"><span>Machine learning</span><i></i><span>Data science</span><i></i><span>Computer vision</span></div>
 </body>
 </html>
