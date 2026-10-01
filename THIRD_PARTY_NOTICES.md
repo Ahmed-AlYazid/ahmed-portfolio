@@ -19,6 +19,6 @@ The animal demo loads ONNX Runtime Web 1.30.0 on demand from jsDelivr.
 
 ## Fonts
 
-Bricolage Grotesque, Geist and Geist Mono are loaded from Google Fonts.
+Unbounded, Readex Pro and IBM Plex Mono are loaded from Google Fonts.
 
 - License: SIL Open Font License 1.1 — https://openfontlicense.org

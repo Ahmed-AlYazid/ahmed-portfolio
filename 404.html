@@ -4,26 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="noindex" />
-  <meta name="theme-color" content="#0b0c0e" />
+  <meta name="theme-color" content="#0e0f12" />
   <title>Page not found — Ahmed AlYazid</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (_) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Geist:wght@400..600&family=Geist+Mono:wght@500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400..600&family=Unbounded:wght@800..900&family=IBM+Plex+Mono:wght@500&display=swap" />
   <style>
-    :root{--bg:#0b0c0e;--text:#eeeff1;--muted:#a0a5ae;--line:rgba(255,255,255,.08);--accent:#ff6a3d;--ink:#160803}
-    @media (prefers-color-scheme: light){:root{--bg:#f4f3ef;--text:#111215;--muted:#555a62;--line:rgba(14,15,17,.09);--accent:#c2410c;--ink:#fff}}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:16px;background:var(--bg);color:var(--text);font:16px/1.6 Geist,"Segoe UI",system-ui,sans-serif}
-    body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(circle,#000,transparent 70%);mask-image:radial-gradient(circle,#000,transparent 70%)}
-    main{position:relative;max-width:560px;text-align:center}
-    small{font:500 .75rem/1 "Geist Mono",monospace;letter-spacing:.06em;color:var(--accent)}
-    h1{margin:14px 0 0;font:800 clamp(96px,22vw,180px)/.85 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.06em}
-    h1 span{color:var(--accent)}
-    p{color:var(--muted);margin:18px 0 0}
-    a{display:inline-flex;align-items:center;min-height:48px;margin-top:24px;padding:0 22px;border-radius:999px;background:var(--accent);color:var(--ink);text-decoration:none;font-weight:600}
-    a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    /* Same tokens as the portfolio: Graphite & Cobalt, diamond motif, radius 14, 1.5px lines. */
+    :root { color-scheme: dark; --ink: #0e0f12; --text: #eef1f6; --muted: #a3a9b6; --accent: #5b8cff; --accent-hi: #7aa2ff; --accent-ink: #050b1f; --pat: 6%; }
+    :root[data-theme="light"] { color-scheme: light; --ink: #eceff4; --text: #10131a; --muted: #555d6e; --accent: #2d5be3; --accent-hi: #4570ec; --accent-ink: #ffffff; --pat: 3.5%; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; background: var(--ink); color: var(--text); font: 400 17px/1.7 "Readex Pro", "Segoe UI", system-ui, sans-serif;
+      background-image: repeating-conic-gradient(from 45deg, color-mix(in srgb, var(--accent) var(--pat), transparent) 0 25%, transparent 0 50%); background-size: 44px 44px; }
+    main { max-width: 560px; text-align: center; }
+    small { display: inline-flex; align-items: center; gap: 10px; font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: .06em; color: var(--accent); }
+    small i { width: 7px; height: 7px; background: var(--accent); transform: rotate(45deg); }
+    h1 { margin: 16px 0 0; font: 900 clamp(96px, 24vw, 190px)/.85 "Unbounded", system-ui, sans-serif; letter-spacing: -.06em; }
+    h1 span { color: var(--accent); }
+    p { margin: 18px 0 0; color: var(--muted); }
+    a { display: inline-flex; align-items: center; min-height: 48px; margin-top: 26px; padding: 0 22px; border-radius: 14px; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600; transition: background .2s; }
+    a:hover { background: var(--accent-hi); }
+    a:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 3px; }
   </style>
 </head>
-<body><main><small>PAGE NOT FOUND</small><h1>404<span>.</span></h1><p>The requested page does not exist.</p><a href="/">Return to the portfolio →</a></main></body>
+<body><main><small><i aria-hidden="true"></i>PAGE NOT FOUND</small><h1>4<span>0</span>4</h1><p>This page is outside the orbit.</p><a href="/">Back to the portfolio →</a></main></body>
 </html>

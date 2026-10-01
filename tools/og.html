@@ -5,40 +5,39 @@
   <title>Social card</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Geist:wght@400..600&family=Geist+Mono:wght@500&display=block" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400..600&family=Unbounded:wght@800..900&family=IBM+Plex+Mono:wght@500&display=block" />
   <style>
+    /* Same identity as the portfolio hero: Graphite & Cobalt, diamond pattern, the name as the mark. */
     * { box-sizing: border-box; }
     html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
     body {
-      position: relative; padding: 72px 80px; background: #0b0c0e; color: #eeeff1;
-      font-family: Geist, "Segoe UI", sans-serif; display: flex; flex-direction: column;
+      position: relative; display: flex; flex-direction: column; padding: 64px 80px 0;
+      background: #0e0f12; color: #eef1f6; font-family: "Readex Pro", "Segoe UI", sans-serif;
+      background-image: repeating-conic-gradient(from 45deg, rgba(91, 140, 255, .06) 0 25%, transparent 0 50%); background-size: 44px 44px;
     }
-    body::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 56px 56px;
-      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 85% 20%, #000 10%, transparent 70%);
-    }
-    .top { position: relative; display: flex; justify-content: space-between; font: 500 18px/1 "Geist Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: #a0a5ae; }
-    .top span:last-child { color: #3ddc97; }
-    h1 { position: relative; margin: auto 0 0; font: 800 116px/.88 "Bricolage Grotesque", sans-serif; letter-spacing: -.055em; }
-    h1 span { color: #ff6a3d; }
-    .role { position: relative; margin-top: 30px; font: 500 24px/1.3 "Geist Mono", monospace; }
-    .role i { font-style: normal; color: #ff6a3d; padding: 0 10px; }
-    .stats { position: relative; display: flex; gap: 14px; margin-top: 44px; }
-    .stats div { padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12); background: #141519; }
-    .stats strong { display: block; font: 700 34px/1 "Bricolage Grotesque", sans-serif; letter-spacing: -.03em; }
-    .stats small { display: block; margin-top: 8px; font: 500 13px/1 "Geist Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: #a0a5ae; }
+    .top { display: flex; justify-content: space-between; align-items: center; font: 500 19px/1 "IBM Plex Mono", monospace; color: #a3a9b6; }
+    .top span { display: inline-flex; align-items: center; gap: 12px; }
+    .dia { width: 10px; height: 10px; background: #5b8cff; transform: rotate(45deg); }
+    .live .dia { background: #5eead4; }
+    h1 { margin: auto 0 0; font: 900 104px/.9 "Unbounded", sans-serif; letter-spacing: -.055em; text-transform: uppercase; }
+    h1 span { display: block; }
+    h1 .last { color: #5b8cff; }
+    .stats { display: flex; gap: 14px; margin: 34px 0 40px; }
+    .stats div { padding: 14px 20px; border-radius: 14px; border: 1.5px solid rgba(238, 241, 246, .16); background: #15171c; }
+    .stats strong { display: block; font: 600 30px/1 "Readex Pro", sans-serif; }
+    .stats small { display: block; margin-top: 8px; font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: .04em; text-transform: uppercase; color: #a3a9b6; }
+    .band { display: flex; gap: 34px; align-items: center; margin: 0 -80px; padding: 0 80px; height: 58px; background: #5b8cff; color: #050b1f; font: 800 24px/1 "Unbounded", sans-serif; letter-spacing: -.02em; text-transform: uppercase; white-space: nowrap; }
+    .band i { width: 11px; height: 11px; flex: none; background: #050b1f; opacity: .45; transform: rotate(45deg); }
   </style>
 </head>
 <body>
-  <div class="top"><span>AI graduate · Makkah, Saudi Arabia</span><span>● Live platform in production</span></div>
-  <h1>Ahmed Saeed<br>AlYazid<span>.</span></h1>
-  <p class="role">Machine Learning<i>/</i>Data Science<i>/</i>Computer Vision</p>
+  <div class="top"><span><i class="dia"></i>AI graduate · Makkah, Saudi Arabia</span><span class="live"><i class="dia"></i>Live platform in production</span></div>
+  <h1><span>Ahmed Saeed</span><span class="last">AlYazid</span></h1>
   <div class="stats">
     <div><strong>96.3%</strong><small>Best reported accuracy</small></div>
     <div><strong>0.996</strong><small>AUC-ROC</small></div>
-    <div><strong>3</strong><small>Runnable models</small></div>
+    <div><strong>3</strong><small>Models that run in the browser</small></div>
   </div>
+  <div class="band"><span>Machine learning</span><i></i><span>Computer vision</span><i></i><span>Data science</span><i></i><span>Production AI</span></div>
 </body>
 </html>

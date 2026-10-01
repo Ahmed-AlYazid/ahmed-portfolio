@@ -17,9 +17,9 @@ A lightweight, production portfolio for Ahmed Saeed AlYazid, an Artificial Intel
 
 ## Visual identity
 
-"Signal": a graphite ground with one signal-orange accent (`#ff6a3d` dark / `#c2410c` light), Bricolage Grotesque for display type, Geist for body copy and Geist Mono for data labels. The name itself is the mark — "AlYazid." with the orange dot — and the favicon is that dot. The CV and social card use the same tokens.
+"Graphite & Cobalt": a graphite ground with one cobalt accent (`#5b8cff` dark / `#2d5be3` light), Unbounded for display type, Readex Pro for body copy and IBM Plex Mono for data labels. One shape language runs through everything: a 14px radius (10px inside), 1.5px lines and the ◆ diamond as the only motif — the favicon, list markers, timeline stops and the theme toggle (a half-filled diamond that turns over between dark and light). The CV, social card and 404 page use the same tokens.
 
-Motion patterns are vanilla adaptations of curated references (no dependencies): pointer spotlight and number ticker (Magic UI), in-view reveal (Motion Primitives) and a border beam on the profile card. All of them switch off under `prefers-reduced-motion`.
+The page is built around interaction rather than decoration: a moving skills band, orbits of four fields that filter the work index (drag to spin, pick a field to light its projects), an index that opens each project in a side drawer with its live lab, a clickable journey timeline and a filterable toolkit. Every motion switches off under `prefers-reduced-motion`, and everything is readable at rest.
 
 ## Technology
 
@@ -30,8 +30,8 @@ The small regression and decision-tree models run with native JavaScript. The an
 ## Structure
 
 - `index.html` — content, SEO metadata, and the interactive lab markup
-- `styles.css` — responsive visual system, themes, effects, and motion fallbacks
-- `script.js` — navigation, themes, page progress, accessible lab switching, and model inference
+- `style.css` — tokens for both themes, layout, components and motion fallbacks
+- `app.js` — content data, orbits and work index, project drawer, labs and model inference, timeline, toolkit, and the theme toggle
 - `assets/` — model artifacts, favicon, social card, and public CV
 - `tools/` — `cv.html` and `og.html` (sources of the CV and social card), `build_assets.mjs` (renders them), and the coursework model scripts
 - `404.html` — production not-found page
