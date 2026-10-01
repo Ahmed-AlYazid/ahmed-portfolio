@@ -29,6 +29,8 @@
     small { display: inline-flex; align-items: center; gap: 10px; font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: .06em; color: var(--accent); }
     small i { width: 7px; height: 7px; background: var(--accent); transform: rotate(45deg); }
     h1 { margin: 16px 0 0; font: 900 clamp(96px, 24vw, 190px)/.85 "Unbounded", system-ui, sans-serif; letter-spacing: -.06em; display: flex; justify-content: center; align-items: center; gap: .08em; }
+    .mark { display: contents; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     h1 i { width: .5em; height: .5em; margin-inline: .1em; border-radius: .07em; background: var(--accent); transform: rotate(45deg); }
     p { margin: 18px 0 0; color: var(--muted); }
     a { display: inline-flex; align-items: center; min-height: 48px; margin-top: 26px; padding: 0 22px; border-radius: 14px; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600; transition: background .2s; }
@@ -36,5 +38,5 @@
     a:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 3px; }
   </style>
 </head>
-<body><main><small><i aria-hidden="true"></i>PAGE NOT FOUND</small><h1 aria-label="404">4<i aria-hidden="true"></i>4</h1><p>This page is outside the orbit.</p><a href="/">Back to the portfolio →</a></main></body>
+<body><main><small><i aria-hidden="true"></i>PAGE NOT FOUND</small><h1><span class="mark" aria-hidden="true">4<i></i>4</span><span class="sr">404</span></h1><p>This page is outside the orbit.</p><a href="/">Back to the portfolio →</a></main></body>
 </html>

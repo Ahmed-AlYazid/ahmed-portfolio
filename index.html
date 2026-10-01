@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0e0f12" />
-  <title>Ahmed Saeed AlYazid — AI & Machine Learning</title>
+  <title>Ahmed Saeed AlYazid — AI &amp; Machine Learning</title>
   <meta name="description" content="Ahmed Saeed AlYazid, Artificial Intelligence graduate from Umm Al-Qura University: a production Arabic platform, controlled computer-vision research, and machine-learning models that run in the browser." />
   <meta name="author" content="Ahmed Saeed AlYazid" />
   <meta name="robots" content="index,follow" />
@@ -71,7 +71,7 @@
         <button type="button" class="theme-btn" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme">
           <svg viewBox="0 0 20 20" aria-hidden="true"><path class="half" d="M10 2.5 2.5 10 10 17.5Z"/><path class="edge" d="M10 2.5 17.5 10 10 17.5 2.5 10Z"/></svg>
         </button>
-        <a class="btn btn-accent btn-sm" data-cv href="assets/Ahmed_AlYazid_CV.pdf" target="_blank" rel="noreferrer" aria-label="Download CV"><span><span class="cv-word">Download </span>CV ↓</span></a>
+        <a class="btn btn-accent btn-sm" data-cv href="assets/Ahmed_AlYazid_CV.pdf" target="_blank" rel="noreferrer"><span><span class="cv-word">Download </span>CV <span aria-hidden="true">↓</span></span></a>
       </div>
     </div>
   </header>
@@ -119,7 +119,7 @@
               <div class="orbit-nodes"></div>
             </div>
             <div class="orbit-card" aria-live="polite">
-              <div class="orbit-card-head"><h3 class="orbit-card-title"></h3><button type="button" class="link-btn" id="orbitAll">Show all projects</button></div>
+              <div class="orbit-card-head"><h3 class="orbit-card-title">Four fields, five projects</h3><button type="button" class="link-btn" id="orbitAll">Show all projects</button></div>
               <p class="orbit-card-text"></p>
             </div>
           </div>
@@ -196,7 +196,7 @@
               <div class="row-actions">
                 <a class="btn btn-ink-line" href="https://github.com/Ahmed-AlYazid" target="_blank" rel="noreferrer">GitHub ↗</a>
                 <a class="btn btn-ink-line" href="https://github.com/Ahmed-AlYazid/ahmed-portfolio" target="_blank" rel="noreferrer">Portfolio source ↗</a>
-                <a class="btn btn-ink" data-cv href="assets/Ahmed_AlYazid_CV.pdf" target="_blank" rel="noreferrer">Download CV ↓</a>
+                <a class="btn btn-ink" data-cv href="assets/Ahmed_AlYazid_CV.pdf" target="_blank" rel="noreferrer">Download CV <span aria-hidden="true">↓</span></a>
               </div>
             </div>
             <a class="magnet" id="magnet" href="mailto:ahmedalyzeed@gmail.com"><span>Email<br />me</span></a>
@@ -244,29 +244,31 @@
     <form class="block lab-io" data-block="2" id="animalForm">
       <span class="lab-tag">Live lab · runs in your browser</span>
       <ul class="chips" id="animalClasses"><li>bear</li><li>cat</li><li>dog</li><li>elephant</li><li>goat</li><li>horse</li><li>lion</li><li>tiger</li><li>wolf</li></ul>
-      <label class="drop" for="animalFile">
+      <label class="drop">
         <input type="file" id="animalFile" accept="image/jpeg,image/png,image/webp" />
         <i class="dia dia-lg" aria-hidden="true"></i>
         <strong>Choose an animal photo</strong>
         <span>JPG, PNG or WebP · processed locally</span>
       </label>
-      <img class="animal-preview" id="animalPreview" alt="Selected photo" hidden />
+      <img class="animal-preview" id="animalPreview" src="data:," alt="Selected photo" hidden />
       <button class="btn btn-accent btn-block" type="submit">Classify image</button>
       <div class="result" role="status" aria-live="polite" id="animalResult"><span>Choose a photo of one of the nine classes.</span></div>
     </form>
 
     <div class="block lab-io" data-block="3">
       <span class="lab-tag">Live lab · runs in your browser</span>
-      <label class="range" for="dx"><span><span>Length (mm)</span><output id="dxv">3.95</output></span><input type="range" id="dx" min="3.79" max="6.9" step="0.01" value="3.95" /></label>
-      <label class="range" for="dy"><span><span>Width (mm)</span><output id="dyv">3.98</output></span><input type="range" id="dy" min="3.75" max="6.9" step="0.01" value="3.98" /></label>
-      <label class="range" for="dz"><span><span>Depth (mm)</span><output id="dzv">2.43</output></span><input type="range" id="dz" min="2.27" max="4.33" step="0.01" value="2.43" /></label>
+      <div class="range"><span><label for="dx">Length (mm)</label><output id="dxv" for="dx">3.95</output></span><input type="range" id="dx" min="3.79" max="6.9" step="0.01" value="3.95" /></div>
+      <div class="range"><span><label for="dy">Width (mm)</label><output id="dyv" for="dy">3.98</output></span><input type="range" id="dy" min="3.75" max="6.9" step="0.01" value="3.98" /></div>
+      <div class="range"><span><label for="dz">Depth (mm)</label><output id="dzv" for="dz">2.43</output></span><input type="range" id="dz" min="2.27" max="4.33" step="0.01" value="2.43" /></div>
+      <p class="range-note">Each range spans the smallest to largest diamond in the 500-row project data.</p>
       <div class="result" role="status" aria-live="polite"><b id="dPrice">$357</b><span id="dNote"></span></div>
     </div>
 
     <div class="block lab-io" data-block="4">
       <span class="lab-tag">Live lab · runs in your browser</span>
-      <label class="range" for="oh"><span><span>Height (cm)</span><output id="ohv">170</output></span><input type="range" id="oh" min="145" max="198" step="1" value="170" /></label>
-      <label class="range" for="ow"><span><span>Weight (kg)</span><output id="owv">75</output></span><input type="range" id="ow" min="39" max="165" step="1" value="75" /></label>
+      <div class="range"><span><label for="oh">Height (cm)</label><output id="ohv" for="oh">170</output></span><input type="range" id="oh" min="145" max="198" step="1" value="170" /></div>
+      <div class="range"><span><label for="ow">Weight (kg)</label><output id="owv" for="ow">75</output></span><input type="range" id="ow" min="39" max="165" step="1" value="75" /></div>
+      <p class="range-note">Height and weight run from the shortest to the tallest and the lightest to the heaviest person in the 2,086 records the model learned from.</p>
       <div class="toggles">
         <button type="button" class="toggle" data-flag="fam" aria-pressed="true"><i class="dia" aria-hidden="true"></i><span>Family history of overweight</span></button>
         <button type="button" class="toggle" data-flag="scc" aria-pressed="false"><i class="dia" aria-hidden="true"></i><span>Monitors calories</span></button>
@@ -277,14 +279,14 @@
   </div>
 
   <div class="drawer-shade" id="shade" hidden></div>
-  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
     <div class="drawer-top"><span class="muted-ink" id="drawerKind"></span><button type="button" class="icon-btn" id="drawerClose" aria-label="Close">✕</button></div>
-    <h3 class="h3" id="drawerTitle"></h3>
+    <h3 class="h3" id="drawerTitle">Project</h3>
     <div class="drawer-body" id="drawerBody"></div>
     <div class="drawer-nav"><button type="button" id="drawerPrev"><small>← Previous</small><span></span></button><button type="button" id="drawerNext"><small>Next →</small><span></span></button></div>
-  </aside>
+  </div>
 
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

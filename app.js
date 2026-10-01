@@ -105,20 +105,24 @@
 
   let spin = 0, vel = reduce ? 0 : 0.006, dragging = false, moved = false, lastAngle = 0, lastT = 0, hoverPause = false;
   const BASE_VEL = 0.006;
+  // Sizes are measured once (and on resize / font load), never inside the frame loop,
+  // and nodes move with transform only, so each frame costs no layout.
+  let size = 1, halves = [];
+  function measure() { size = stage.clientWidth || 1; halves = nodes.map((b) => b.offsetWidth / 2 + 2); place(); }
   function place() {
-    const size = stage.clientWidth || 1;
     ringsG.setAttribute('transform', `rotate(${spin.toFixed(2)} 260 260)`);
     nodes.forEach((b, i) => {
       const r = (ORB[NODE_ORBIT[i]].rot + spin) * Math.PI / 180;
       const d = ORB[NODE_ORBIT[i]].rx * NODE_END[i];
       const x = (260 + d * Math.cos(r)) / 520 * size, y = (260 + d * Math.sin(r)) / 520 * size;
-      const half = b.offsetWidth / 2 + 2;
-      b.style.left = Math.min(size - half, Math.max(half, x)) + 'px';
-      b.style.top = y + 'px';
+      const cx = Math.min(size - halves[i], Math.max(halves[i], x));
+      b.style.transform = `translate(${cx.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%)`;
     });
   }
-  let last = performance.now();
+  // The loop only runs while the orbits are on screen and the tab is visible.
+  let last = performance.now(), onScreen = true, rafId = 0;
   function tick(now) {
+    rafId = 0;
     const dt = Math.min(50, now - last); last = now;
     if (!dragging) {
       if (!reduce && !hoverPause) {
@@ -127,10 +131,14 @@
       }
     }
     place();
-    requestAnimationFrame(tick);
+    loop();
   }
-  requestAnimationFrame(tick);
-  addEventListener('resize', place);
+  function loop() { if (!rafId && onScreen && !document.hidden) rafId = requestAnimationFrame(tick); }
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; last = performance.now(); loop(); }).observe(stage);
+  document.addEventListener('visibilitychange', () => { last = performance.now(); loop(); });
+  measure(); loop();
+  addEventListener('resize', measure);
+  if (document.fonts) document.fonts.ready.then(measure);
 
   const angleAt = (e) => { const r = stage.getBoundingClientRect(); return Math.atan2(e.clientY - r.top - r.height / 2, e.clientX - r.left - r.width / 2) * 180 / Math.PI; };
   stage.addEventListener('pointerdown', (e) => {
